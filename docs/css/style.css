@@ -1,6 +1,74 @@
+.menu__list-a {
+    font-family: "AnekMalayalam-Medium", sans-serif;
+    font-weight: 500;
+}
+
 a, body {
     font-family: "AnekMalayalam-SemiBold", sans-serif;
     font-weight: 600;
+}
+
+.header__top {
+    padding: 40px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+}
+
+.header__top-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header__bottom {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+.header__bottom-inner {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    line-height: 1.2;
+    letter-spacing: 3px;
+}
+
+.header__bottom-title {
+    max-width: 750px;
+    font-size: 120px;
+}
+
+.menu__list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu__list-li {
+    letter-spacing: 3px;
+}
+
+.menu__list-li:not(:last-child) {
+    margin-right: 15px;
+}
+
+.menu__list-a {
+    display: inline-block;
+    padding: 5px;
+    font-size: 24px;
+    transition: all 0.3s ease;
+}
+
+.menu__list-a:hover {
+    border-color: white;
+    color: #9c9c9c;
 }
 
 @font-face {

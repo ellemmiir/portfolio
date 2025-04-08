@@ -27,7 +27,7 @@ const browserSync = require('browser-sync');
 
 
 const srcPath = 'src/';
-const distPath = 'dist/';
+const distPath = 'docs/';
 
 const path = {
   build: {
@@ -41,7 +41,7 @@ const path = {
     html: srcPath + '*.html',
     css: srcPath + 'scss/*.scss',
     js: srcPath + 'js/*.js',
-    images: srcPath + 'images/**/*.{jpg,jpeg,png,gif,ico,xml,json,webp}',
+    images: srcPath + 'images/**/*.{svg,jpg,jpeg,png,gif,ico,xml,json,webp}',
     svg: srcPath + 'images/**/*.svg',
     fonts: srcPath + 'fonts/**/*.{otf,woff,woff2,ttf,svg}'
   },
@@ -182,7 +182,7 @@ function watchFiles() {
 }
 
 
-const build = series(clean, parallel(pages, styles, scripts, images,  fonts));
+const build = series(clean, parallel(pages, styles, scripts, images,  fonts, sprite));
 
 exports.pages = pages;
 exports.styles = styles;

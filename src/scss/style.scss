@@ -18,3 +18,64 @@ $black: #000000;
 }
 
 
+.header{
+  &__top{
+    padding: 40px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+  }
+  &__top-inner{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__bottom{
+    user-select: none;
+  }
+  &__bottom-inner{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    line-height: 1.2;
+    letter-spacing: 3px;
+  }
+  &__bottom-title{
+    max-width: 750px;
+    font-size: 120px;
+  }
+}
+
+
+.menu{
+  &__list{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__list-li{
+    letter-spacing: 3px;
+
+  }
+  &__list-li:not(:last-child){
+    margin-right: 15px;
+  }
+  &__list-a{
+    display: inline-block;
+    padding: 5px;
+    font-size: 24px;
+    @extend %medium;
+    // border-bottom: 2px solid $black;
+    transition: all 0.3s ease;
+  }
+  &__list-a:hover {
+    border-color: white;
+    color: #9c9c9c;
+  }
+}
+
