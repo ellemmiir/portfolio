@@ -20,11 +20,12 @@ $black: #000000;
 
 .header{
   &__top{
-    padding: 40px 0;
+    padding: 20px 0;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
+    background-color: $black;
     z-index: 999;
   }
   &__top-inner{
@@ -36,6 +37,7 @@ $black: #000000;
     user-select: none;
   }
   &__bottom-inner{
+    padding-top: 86px;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -79,3 +81,79 @@ $black: #000000;
   }
 }
 
+
+.about{
+  &__inner{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__info{
+    padding-top: 50px;
+    max-width: 600px;
+  }
+  &__info-title {
+    margin-bottom: 40px;
+    display: inline-block;
+    font-size: 30px;
+    border-bottom: 1px solid $white;
+  }
+  &__info-subtitle {
+    margin-bottom: 20px;
+    text-align: right;
+  }
+  &__info-text {
+    margin-bottom: 20px;
+    @extend %light;
+    font-size: 18px;
+  }
+}
+
+
+.skills {
+  background-image: url('../images/skills.jpg');
+  background-repeat: no-repeat;
+  background-size: 50%;
+  background-position: right center;
+  &__inner {
+    font-size: 14px;
+    letter-spacing: 2px;
+  }
+  &__title {
+    margin-bottom: 60px;
+  }
+  &__items {
+    width: 450px;
+  }
+  &__item {
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    position: relative;
+    border-bottom: 2px solid $white;
+    text-transform: uppercase;
+    span {
+      margin-right: 7px;
+      position: absolute;
+      display: block;
+      right: 0;
+      bottom: -26px;
+    }
+    span:before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 3px;
+      right: -7px;
+      bottom: 24px;
+      background-color: $black;
+    }
+    p {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+  }
+  &__text {
+    @extend %light;
+  }
+}
