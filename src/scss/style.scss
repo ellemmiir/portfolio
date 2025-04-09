@@ -288,3 +288,65 @@ $black: #000000;
 }
 
 
+.footer {
+  padding: 80px 0 20px;
+  &__inner {
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__box-email{
+    font-size: 42px;
+    display: inline-block;
+    position: relative;
+    &::before,
+    &::after {
+      position: absolute;
+      content: " ";
+      left: 0;
+      bottom: 0;
+      height: 1px;
+      width: 100%;
+      background-color: $white;
+      transition: all 1s ease-out;
+    }
+    &::before {
+      transform: scaleX(0);
+      transform-origin: left;
+    }
+    &::after {
+      transform-origin: right;
+      transition-delay: 0.2s;
+    }
+    &:hover {
+      &::before {
+        transform: scaleX(1);
+        transition-delay: 0.2s;
+      }
+      &::after {
+        transform: scaleX(0);
+        transition-delay: 0s;
+      }
+    }
+  }
+  &__list-li{
+    font-size: 18px;
+  }
+  &__list-li:not(:last-child){
+    margin-bottom: 15px;
+  }
+  &__list-a{
+    padding-left: 5px;
+    @extend %light;
+    opacity: 0.8;
+    transition: opacity .3s ease-out;
+    &:hover {
+      opacity: 1;
+    }
+  }
+  &__text {
+    @extend %light;
+    text-align: center;
+  }
+}
