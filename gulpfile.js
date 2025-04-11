@@ -107,7 +107,7 @@ function styles () {
 
 
 function scripts () {
-    return src(path.src.js, {base: srcPath + 'js/'})
+    return src(['node_modules/jquery/dist/jquery.js', path.src.js], {base: srcPath + 'js/'})
     .pipe(plumber({
       errorHandler : function (err) {
         notify.onError({
