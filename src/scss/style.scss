@@ -35,7 +35,7 @@ $black: #000000;
   }
   &__bottom{
     background-image: url('../images/bg.jpg');
-    background-position: bottom bottom;
+    background-position: bottom center;
     background-repeat: no-repeat;
     background-size: cover;
     user-select: none;
@@ -54,11 +54,54 @@ $black: #000000;
   &__bottom-title{
     max-width: 900px;
     font-size: 120px;
+    text-transform: uppercase;
   }
 }
 
 
 .menu{
+  margin-left: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &__btn {
+    position: relative;
+    display: none;
+    width: 40px;
+    height: 26px;
+    background: transparent;
+  }
+  &__btn::before,
+  &__btn::after {
+    position: absolute;
+    content: '';
+    display: block;
+    width: 100%;
+    height: 4px;
+    left: 0;
+    border-radius: 10px;
+    background: $white;
+  }
+  &__btn::before {
+    top: 0;
+    box-shadow: 0 11px 0 $white;
+    transition: box-shadow .3s .15s, top .3s .15s, transform .3s;
+  }
+  &__btn::after {
+    bottom: 0;
+    transition: bottom .3s .15s, transform .3s;
+  }
+  .menu__btn.active::before {
+    top: 11px;
+    transform: rotate(45deg);
+    box-shadow: 0 6px 0 rgba(255, 255, 255, 0);
+    transition: box-shadow .15s, top .3s, transform .3s .15s;
+  }
+  .menu__btn.active::after {
+    bottom: 11px;
+    transform: rotate(-45deg);
+    transition: bottom .3s, transform .3s .15s;
+  }
   &__list{
     display: flex;
     justify-content: space-between;
@@ -66,7 +109,6 @@ $black: #000000;
   }
   &__list-li{
     letter-spacing: 3px;
-
   }
   &__list-li:not(:last-child){
     margin-right: 15px;
@@ -76,6 +118,7 @@ $black: #000000;
     padding: 5px;
     font-size: 24px;
     @extend %medium;
+    text-transform: uppercase;
     // border-bottom: 2px solid $black;
     transition: all 0.3s ease;
   }
@@ -93,6 +136,7 @@ $black: #000000;
     align-items: center;
   }
   &__info{
+    margin-left: 20px;
     padding-top: 50px;
     max-width: 600px;
   }
@@ -127,7 +171,7 @@ $black: #000000;
     margin-bottom: 60px;
   }
   &__items {
-    width: 450px;
+    max-width: 450px;
   }
   &__item {
     margin-bottom: 30px;
@@ -289,6 +333,21 @@ $black: #000000;
 }
 
 
+.resume{
+  text-align: center;
+  &__text{
+    font-size: 30px;
+    margin-bottom: 20px;
+  }
+  &__title{
+    transition: all 0.3s ease;
+    &:hover{
+      color: #9c9c9c;
+    }
+  }
+}
+
+
 .footer {
   padding: 80px 0 20px;
   &__inner {
@@ -296,6 +355,10 @@ $black: #000000;
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+  &__box{
+    margin-bottom: 30px;
+    margin-right: 20px;
   }
   &__box-email{
     font-size: 42px;
