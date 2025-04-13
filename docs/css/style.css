@@ -369,7 +369,7 @@ a, body {
 }
 
 .footer {
-    padding: 80px 0 20px;
+    padding: 50px 0 20px;
 }
 
 .footer__inner {
@@ -593,10 +593,6 @@ html {
 }
 
 @media (max-width: 1200px) {
-    .footer {
-        padding: 50px 0 20px;
-    }
-
     .footer__inner {
         margin-bottom: 30px;
         margin-right: 0;
