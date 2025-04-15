@@ -3,7 +3,28 @@
   font-weight: 200;
   font-style: normal;
   src: local('AnekMalayalam-Light'),
-    url('../fonts/AnekMalayalam-Light.woff2') format('woff2'),
+    // url('../fonts/AnekMalayalam-Light.woff2') format('woff2'),
     url('../fonts/AnekMalayalam-Light.woff') format('woff');
+  font-display: swap;
+}
+
+
+@font-face {
+  font-family: 'AnekMalayalam-Medium';
+  font-weight: 500;
+  font-style: normal;
+  src: local('AnekMalayalam-Medium'),
+    // url('../fonts/AnekMalayalam-Medium.woff2') format('woff2'),
+    url('../fonts/AnekMalayalam-Medium.woff') format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'AnekMalayalam-SemiBold';
+  font-weight: 600;
+  font-style: normal;
+  src: local('AnekMalayalam-SemiBold'),
+    // url('../fonts/AnekMalayalam-SemiBold.woff2') format('woff2'),
+    url('../fonts/AnekMalayalam-SemiBold.woff') format('woff');
   font-display: swap;
 }
