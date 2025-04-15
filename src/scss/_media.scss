@@ -13,131 +13,31 @@ $maxWidth: 1200;
     }
 }
 
-
 // @include adaptiv-font(120, 50);
 
 @media (max-width: 1600px) {
-  .works{
-    &__inner {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
+
 }
+
 
 /* Large desktops and laptops */
 /* Portrait tablets and medium desktops */
 @media (max-width: 1200px) {
-  .title{
-    @include adaptiv-font(120, 60);
-  }
 
-  section{
-    padding: 50px 0;
-  }
-
-  .menu {
-      &__list-a {
-          @include adaptiv-font(24, 18);
-      }
-  }
-
-  .about{
-    &__inner{
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
-      text-align: center;
-    }
-    &__info{
-      margin-left: 0;
-    }
-  }
-
-  .skills{
-    background-image: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    &__title{
-      text-align: center;
-    }
-  }
-
-  .works{
-    &__inner {
-      grid-template-columns: repeat(2, 1fr);
-    }
-    &__item-subtitle {
-      @include adaptiv-font(24, 16);
-    }
-    &__item-title{
-      @include adaptiv-font(56, 20);
-    }
-  }
-
-  .footer{
-    &__inner {
-      margin-bottom: 30px;
-      margin-right: 0;
-      flex-direction: column;
-      text-align: left;
-      align-items: start;
-    }
-    &__box-email{
-      @include adaptiv-font(42, 25);
-      line-height: 1;
-    }
-    &__text{
-      text-align: left;
-    }
-  }
 }
 
 
 /* Portrait tablets and small desktops */
 @media (max-width: 991px) {
-  .header{
-    &__bottom-title{
-      @include adaptiv-font(120, 30);
-    }
-  }
 
-  .menu {
-    &__list{
-      flex-direction: column;
-    }
-    &__btn{
-      display: block;
-    }
-  }
 }
+
 
 /* Landscape phones and portrait tablets */
 @media (max-width: 767px) {
-  .works{
-    &__inner {
-      grid-template-columns: repeat(2, 1fr);
-    }
-    &__item {
-      height: 250px;
-    }
-    &__item-box{
-      padding: 10px;
-    }
-    &__item-num{
-      span{
-        display: none;
-      }
-    }
-    &__item-text{
-      display: none;
-    }
-    &__item-info{
-      display: none;
-    }
-  }
+
 }
+
 
 /* Landscape phones and smaller */
 @media (max-width: 480px) {}

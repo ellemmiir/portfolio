@@ -1,9 +1,9 @@
 body {
-  background-color: $black;
-  @extend %semibold;
+  // background-color: $black;
+  // @extend %semibold;
   font-size: 16px;
   line-height: 1.5;
-  color: $white;
+  // color: $white;
 }
 
 .container {
@@ -13,8 +13,8 @@ body {
 }
 
 a {
-  @extend %semibold;
-  color: $white;
+  // @extend %semibold;
+  // color: $white;
 }
 
 button {
@@ -29,8 +29,4 @@ section{
 .title {
   font-size: 120px;
   line-height: 1;
-}
-
-html { 
-  scroll-behavior: smooth; 
 }
