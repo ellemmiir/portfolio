@@ -13,6 +13,25 @@ a, body {
     font-weight: 600;
 }
 
+.ru-text {
+    font-family: "Montserrat-Light", sans-serif;
+    font-weight: 300;
+    font-size: 16px !important;
+    line-height: 1.5;
+}
+
+#waves {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+.header {
+    position: relative;
+    overflow: hidden;
+}
+
 .header__top {
     padding: 20px 0;
     position: fixed;
@@ -30,7 +49,6 @@ a, body {
 }
 
 .header__bottom {
-    background-image: url("../images/bg.jpg");
     background-position: bottom center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -52,9 +70,11 @@ a, body {
 }
 
 .header__bottom-title {
+    position: relative;
     max-width: 900px;
     font-size: 120px;
     text-transform: uppercase;
+    z-index: 1;
 }
 
 .menu {
@@ -144,6 +164,16 @@ a, body {
     margin-left: 20px;
     padding-top: 50px;
     max-width: 600px;
+    min-height: 600px;
+    transition: opacity 0.4s ease;
+}
+
+.about__info.fade-out {
+    opacity: 0;
+}
+
+.about__info.fade-in {
+    opacity: 1;
 }
 
 .about__info-title {
@@ -161,6 +191,23 @@ a, body {
 .about__info-text {
     margin-bottom: 20px;
     font-size: 18px;
+}
+
+.about__arrow {
+    display: flex;
+    justify-content: space-between;
+}
+
+.about__lang-btn {
+    padding: 0;
+    background-color: transparent;
+    color: #f8f8f8;
+    border: none;
+    transition: color 0.3s ease-in-out;
+}
+
+.about__lang-btn:hover {
+    color: #9c9c9c;
 }
 
 .skills {
@@ -444,8 +491,16 @@ a, body {
 }
 
 @font-face {
+    font-family: "Montserrat-Light";
+  font-weight: 300;
+  font-style: normal;
+  src: local("Montserrat-Light"), url("../fonts/Montserrat-Light.woff") format("woff");
+  font-display: swap;
+}
+
+@font-face {
     font-family: "AnekMalayalam-Light";
-  font-weight: 200;
+  font-weight: 300;
   font-style: normal;
   src: local("AnekMalayalam-Light"), url("../fonts/AnekMalayalam-Light.woff") format("woff");
   font-display: swap;
@@ -647,6 +702,14 @@ html {
 }
 /* Landscape phones and portrait tablets */
 @media (max-width: 767px) {
+    .header__bottom {
+        background-image: url("../images/bg.jpg");
+    }
+
+    .header__bottom-canvas {
+        display: none;
+    }
+
     .works__inner {
         grid-template-columns: repeat(2, 1fr);
     }

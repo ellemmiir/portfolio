@@ -115,6 +115,18 @@ $maxWidth: 1200;
 
 /* Landscape phones and portrait tablets */
 @media (max-width: 767px) {
+
+
+.header{
+  &__bottom{
+    background-image: url('../images/bg.jpg');
+  }
+  &__bottom-canvas{
+    display: none;
+  }
+}
+
+
   .works{
     &__inner {
       grid-template-columns: repeat(2, 1fr);
