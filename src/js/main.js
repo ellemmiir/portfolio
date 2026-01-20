@@ -1,11 +1,39 @@
 document.addEventListener("DOMContentLoaded", () => {
   
   const menuBtn = document.querySelector(".menu__btn");
+const menuList = document.querySelector(".menu__list");
 
   menuBtn.addEventListener("click", () => {
     menuBtn.classList.toggle("active");
+    menuList.classList.toggle("show");
+    
+    // Закрытие меню при клике на ссылку (для мобильных устройств)
+    if (menuList.classList.contains("show")) {
+      const menuLinks = document.querySelectorAll(".menu__list-a");
+      menuLinks.forEach(link => {
+        link.addEventListener("click", () => {
+          menuBtn.classList.remove("active");
+          menuList.classList.remove("show");
+        });
+      });
+    }
   });
 
+  // Закрытие меню при клике вне его области
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest('.menu') && window.innerWidth <= 991) {
+      menuBtn.classList.remove("active");
+      menuList.classList.remove("show");
+    }
+  });
+
+  // Закрытие меню при изменении размера окна (если перешли на десктоп)
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 991) {
+      menuBtn.classList.remove("active");
+      menuList.classList.remove("show");
+    }
+  });
   //------------------Волны--------------------------
   const canvas = document.getElementById("waves");
   const ctx = canvas.getContext("2d");

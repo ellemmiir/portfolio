@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 .footer__text, .footer__list-a, .skills__text, .about__info-text {
     font-family: "AnekMalayalam-Light", sans-serif;
     font-weight: 300;
@@ -25,6 +27,17 @@ a, body {
     top: 0;
     left: 0;
     z-index: 0;
+}
+
+/* Медиа-запрос для бургер-меню */
+@media (max-width: 991px) {
+    .menu__btn {
+        display: block;
+    }
+
+    .menu__list {
+        display: flex;
+    }
 }
 
 .header {
@@ -82,6 +95,7 @@ a, body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
 }
 
 .menu__btn {
@@ -90,17 +104,8 @@ a, body {
     width: 40px;
     height: 26px;
     background: transparent;
-}
-
-.menu__btn::before, .menu__btn::after {
-    position: absolute;
-    content: "";
-    display: block;
-    width: 100%;
-    height: 4px;
-    left: 0;
-    border-radius: 10px;
-    background: #f8f8f8;
+    z-index: 1000;
+    cursor: pointer;
 }
 
 .menu__btn::before {
@@ -114,17 +119,29 @@ a, body {
     transition: bottom 0.3s 0.15s, transform 0.3s;
 }
 
-.menu .menu__btn.active::before {
+.menu__btn.active::before {
     top: 11px;
     transform: rotate(45deg);
     box-shadow: 0 6px 0 rgba(255, 255, 255, 0);
     transition: box-shadow 0.15s, top 0.3s, transform 0.3s 0.15s;
 }
 
-.menu .menu__btn.active::after {
+.menu__btn.active::after {
     bottom: 11px;
     transform: rotate(-45deg);
     transition: bottom 0.3s, transform 0.3s 0.15s;
+}
+
+.menu__btn::before, .menu__btn::after {
+    position: absolute;
+    content: "";
+    display: block;
+    width: 100%;
+    height: 4px;
+    left: 0;
+    border-radius: 10px;
+    background: #f8f8f8;
+    transition: all 0.3s ease;
 }
 
 .menu__list {
@@ -692,12 +709,55 @@ html {
 }
 
 @media (max-width: 991px) {
-    .menu__list {
-        flex-direction: column;
-    }
-
     .menu__btn {
         display: block;
+    }
+
+    .menu__list {
+        position: fixed;
+        top: 86px;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        background-color: #000000;
+        padding: 30px 0;
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.4s ease-in-out;
+        z-index: 999;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .menu__list.show {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .menu__list-li {
+        margin: 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .menu__list-li:not(:last-child) {
+        margin-bottom: 20px;
+    }
+
+    .menu__list-li:not(:last-child) {
+        margin-right: 0;
+    }
+
+    .menu__list-a {
+        display: block;
+        padding: 15px;
+        font-size: 20px;
+        width: 100%;
+    }
+
+    .menu__list-a:hover {
+        background-color: rgba(255, 255, 255, 0.1);
     }
 }
 /* Landscape phones and portrait tablets */
