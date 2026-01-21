@@ -1,5 +1,3 @@
-@charset "UTF-8";
-
 .footer__text, .footer__list-a, .skills__text, .about__info-text {
     font-family: "AnekMalayalam-Light", sans-serif;
     font-weight: 300;
@@ -29,15 +27,11 @@ a, body {
     z-index: 0;
 }
 
-/* Медиа-запрос для бургер-меню */
-@media (max-width: 991px) {
-    .menu__btn {
-        display: block;
-    }
-
-    .menu__list {
-        display: flex;
-    }
+.body-no-scroll {
+    overflow: hidden !important;
+    position: fixed;
+    width: 100%;
+    height: 100%;
 }
 
 .header {
@@ -90,6 +84,11 @@ a, body {
     z-index: 1;
 }
 
+.header__logo {
+    position: relative;
+    z-index: 1000;
+}
+
 .menu {
     margin-left: 20px;
     display: flex;
@@ -106,6 +105,17 @@ a, body {
     background: transparent;
     z-index: 1000;
     cursor: pointer;
+}
+
+.menu__btn::before, .menu__btn::after {
+    position: absolute;
+    content: "";
+    display: block;
+    width: 100%;
+    height: 4px;
+    left: 0;
+    border-radius: 10px;
+    background: #f8f8f8;
 }
 
 .menu__btn::before {
@@ -130,18 +140,6 @@ a, body {
     bottom: 11px;
     transform: rotate(-45deg);
     transition: bottom 0.3s, transform 0.3s 0.15s;
-}
-
-.menu__btn::before, .menu__btn::after {
-    position: absolute;
-    content: "";
-    display: block;
-    width: 100%;
-    height: 4px;
-    left: 0;
-    border-radius: 10px;
-    background: #f8f8f8;
-    transition: all 0.3s ease;
 }
 
 .menu__list {
@@ -417,6 +415,7 @@ a, body {
 
 .resume {
     text-align: center;
+    margin-top: 20px;
 }
 
 .resume__text {
@@ -715,9 +714,11 @@ html {
 
     .menu__list {
         position: fixed;
-        top: 86px;
+        top: 0;
         left: 0;
         right: 0;
+        bottom: 0;
+        justify-content: center;
         flex-direction: column;
         background-color: #000000;
         padding: 30px 0;
@@ -727,6 +728,8 @@ html {
         transition: all 0.4s ease-in-out;
         z-index: 999;
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        z-index: 100;
+        overflow-y: auto;
     }
 
     .menu__list.show {
@@ -762,20 +765,12 @@ html {
 }
 /* Landscape phones and portrait tablets */
 @media (max-width: 767px) {
-    .header__bottom {
-        background-image: url("../images/bg.jpg");
-    }
-
-    .header__bottom-canvas {
-        display: none;
-    }
-
     .works__inner {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(1, 1fr);
     }
 
     .works__item {
-        height: 250px;
+        height: 300px;
     }
 
     .works__item-box {
