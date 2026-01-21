@@ -25,6 +25,11 @@ a, body {
     top: 0;
     left: 0;
     z-index: 0;
+    width: 100%;
+    height: 100%;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
 }
 
 .body-no-scroll {
@@ -697,13 +702,13 @@ html {
 /* Portrait tablets and small desktops */
 @media (max-width: 991px) and (max-width: 767px) {
     .header__bottom-title {
-        font-size: calc(30px + 153 * (100vw - 320px) / 1200);
+        font-size: calc(46px + 125.8 * (100vw - 320px) / 1200);
     }
 }
 
 @media (max-width: 991px) and (min-width: 767px) {
     .header__bottom-title {
-        font-size: calc(30px + 90 * 100vw / 1200);
+        font-size: calc(46px + 74 * 100vw / 1200);
     }
 }
 

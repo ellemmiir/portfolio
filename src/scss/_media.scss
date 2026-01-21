@@ -98,7 +98,7 @@ $maxWidth: 1200;
 @media (max-width: 991px) {
   .header{
     &__bottom-title{
-      @include adaptiv-font(120, 30);
+      @include adaptiv-font(120, 46);
     }
   }
 
