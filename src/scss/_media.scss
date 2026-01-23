@@ -13,9 +13,6 @@ $maxWidth: 1200;
     }
 }
 
-
-// @include adaptiv-font(120, 50);
-
 @media (max-width: 1600px) {
   .works{
     &__inner {
@@ -24,11 +21,9 @@ $maxWidth: 1200;
   }
 }
 
-/* Large desktops and laptops */
-/* Portrait tablets and medium desktops */
 @media (max-width: 1200px) {
   .title{
-    @include adaptiv-font(120, 60);
+    // @include adaptiv-font(120, 60);
   }
 
   section{
@@ -94,7 +89,6 @@ $maxWidth: 1200;
   }
 }
 
-/* Portrait tablets and small desktops */
 @media (max-width: 991px) {
   .header{
     &__bottom-title{
@@ -114,7 +108,7 @@ $maxWidth: 1200;
       bottom: 0;
       justify-content: center;
       flex-direction: column;
-      background-color: $black;
+      background-color: var(--bg-primary);
       padding: 30px 0;
       transform: translateY(-100%);
       opacity: 0;
@@ -122,9 +116,9 @@ $maxWidth: 1200;
       transition: all 0.4s ease-in-out;
       z-index: 999;
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-
       z-index: 100;
       overflow-y: auto;
+
       &.show {
         transform: translateY(0);
         opacity: 1;
@@ -132,7 +126,7 @@ $maxWidth: 1200;
       }
     }
     &__list-li{
-margin: 0;
+      margin: 0;
       width: 100%;
       text-align: center;
 
@@ -141,34 +135,30 @@ margin: 0;
       }
     }
      &__list-li:not(:last-child){
-margin-right: 0;
+      margin-right: 0;
      }
     &__list-a{
-display: block;
+      display: block;
       padding: 15px;
       font-size: 20px;
       width: 100%;
       
       &:hover {
-        background-color: rgba(255, 255, 255, 0.1);
+        background-color: var(--border-color);
       }
     }
   }
 }
 
-/* Landscape phones and portrait tablets */
 @media (max-width: 767px) {
-
-
-.header{
-  &__bottom{
-    // background-image: url('../images/bg.jpg');
+  .header{
+    &__bottom{
+      // background-image: url('../images/bg.jpg');
+    }
+    &__bottom-canvas{
+      // display: none;
+    }
   }
-  &__bottom-canvas{
-    // display: none;
-  }
-}
-
 
   .works{
     &__inner {
@@ -194,5 +184,4 @@ display: block;
   }
 }
 
-/* Landscape phones and smaller */
 @media (max-width: 480px) {}
