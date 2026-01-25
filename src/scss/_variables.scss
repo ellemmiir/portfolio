@@ -1,0 +1,46 @@
+
+$white: #f8f8f8;
+$black: #000000;
+$gray-light: #f0f0f0;
+$gray-dark: #1a1a1a;
+
+
+:root {
+  --bg-primary: #{$black};
+  --text-primary: #{$white};
+
+  --bg-secondary: #{$gray-dark};
+  --text-secondary: #cccccc;
+  --border-color: rgba(255, 255, 255, 0.1);
+  --header-bg: #{$black};
+  --accent-color: #{$white};
+  --wave-color-base: 0;
+}
+
+[data-theme="light"] {
+  --bg-primary: #{$white};
+  --text-primary: #{$black};
+
+  --bg-secondary: #{$gray-light};
+  --text-secondary: #333333;
+  --border-color: rgba(0, 0, 0, 0.1);
+  --header-bg: #{$white};
+  --accent-color: #{$black};
+  --wave-color-base: 1;
+}
+
+
+%light {
+  font-family: 'AnekMalayalam-Light', sans-serif;
+  font-weight: 300;
+}
+
+%medium {
+  font-family: 'AnekMalayalam-Medium', sans-serif;
+  font-weight: 500;
+}
+
+%semibold {
+  font-family: 'AnekMalayalam-SemiBold', sans-serif;
+  font-weight: 600;
+}

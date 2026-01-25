@@ -1,5 +1,5 @@
-
 document.addEventListener("DOMContentLoaded", () => {
+
   const translations = {
     ru: {
       meta: {
@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   };
 
-  // Темы
+
   class ThemeManager {
     constructor() {
       this.themes = ["dark", "light"];
@@ -190,9 +190,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+
   const themeManager = new ThemeManager();
 
-  // ПЕРЕВОД 
+
   class I18n {
     constructor() {
       this.translations = translations;
@@ -340,7 +341,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+
   const i18n = new I18n();
+
 
   const menuBtn = document.querySelector(".menu__btn");
   const menuList = document.querySelector(".menu__list");
@@ -486,7 +489,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.documentElement.style.scrollBehavior = "auto";
 
-  // === CANVAS WAVES ===
 
   const canvas = document.getElementById("waves");
   if (canvas) {

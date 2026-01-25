@@ -1,9 +1,15 @@
 body {
-  // background-color: $black;
+  background-color: var(--bg-primary);
   @extend %semibold;
   font-size: 16px;
   line-height: 1.5;
-  color: $white;
+  color: var(--text-primary);
+  transition: background-color 0.3s ease;
+}
+
+h1, h2, h3, h4, h5, h6, p, span, li {
+  color: var(--text-primary);
+  transition: color 0.3s ease;
 }
 
 .container {
@@ -12,25 +18,132 @@ body {
   max-width: 1200px;
 }
 
+.body-no-scroll {
+  overflow: hidden !important;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
 a {
   @extend %semibold;
-  color: $white;
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
 
 button {
+  background: none;
   border: none;
   cursor: pointer;
+  font-family: inherit;
+  color: inherit;
 }
 
-section{
+section {
   padding: 100px 0;
 }
 
 .title {
+  margin: 0;
   font-size: 120px;
   line-height: 1;
+  @extend %semibold;
+  color: var(--text-primary);
+  text-transform: uppercase;
 }
 
-html { 
-  scroll-behavior: smooth; 
+svg {
+  path {
+    fill: var(--text-primary);
+    transition: fill 0.3s ease;
+  }
+}
+
+
+.theme-toggle {
+  position: relative;
+  margin-left: 10px;
+  padding: 8px;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border-color); 
+  border-radius: 50%;
+  cursor: pointer;
+  transform: translateZ(0);
+  transform-origin: center center;
+  backface-visibility: hidden;
+  transition: border-color 0.3s ease,
+              transform 0.3s ease;
+  overflow: hidden;
+  
+  &:hover {
+    border-color: var(--accent-color);
+    transform: rotate(15deg);
+  }
+  
+  .theme-icon {
+    position: absolute;
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55),
+                opacity 0.3s ease;
+    fill: var(--text-primary);
+    top: 50%;
+    left: 50%;
+    
+    &--light {
+      opacity: 0;
+      transform: translate(-50%, -50%) rotate(-90deg) scale(0.5);
+    }
+    
+    &--dark {
+      opacity: 1;
+      transform: translate(-50%, -50%) rotate(0) scale(1);
+    }
+  }
+  
+  [data-theme="light"] & {
+    .theme-icon--light {
+      opacity: 1;
+      transform: translate(-50%, -50%) rotate(0) scale(1);
+    }
+    
+    .theme-icon--dark {
+      opacity: 0;
+      transform: translate(-50%, -50%) rotate(90deg) scale(0.5);
+    }
+  }
+}
+
+
+.lang-toggle {
+  margin-left: 15px;
+  padding: 5px 10px;
+  background-color: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  min-width: 60px;
+  text-align: center;
+  font-family: inherit;
+  
+  &:hover {
+    border-color: var(--accent-color);
+    background-color: var(--border-color);
+  }
+}
+
+
+#waves {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
 }
