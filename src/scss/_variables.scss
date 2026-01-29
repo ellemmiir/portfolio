@@ -1,6 +1,7 @@
 
 $white: #f8f8f8;
 $black: #000000;
+$li-hover: #888888;
 $gray-light: #f0f0f0;
 $gray-dark: #1a1a1a;
 
@@ -8,10 +9,10 @@ $gray-dark: #1a1a1a;
 :root {
   --bg-primary: #{$black};
   --text-primary: #{$white};
+  --text-secondary: #{$li-hover};
 
   --bg-secondary: #{$gray-dark};
-  --text-secondary: #cccccc;
-  --border-color: rgba(255, 255, 255, 0.1);
+  --border-color: rgba(255, 255, 255,0.1);
   --header-bg: #{$black};
   --accent-color: #{$white};
   --wave-color-base: 0;
@@ -20,9 +21,9 @@ $gray-dark: #1a1a1a;
 [data-theme="light"] {
   --bg-primary: #{$white};
   --text-primary: #{$black};
+  --text-secondary: #{$li-hover};
 
   --bg-secondary: #{$gray-light};
-  --text-secondary: #333333;
   --border-color: rgba(0, 0, 0, 0.1);
   --header-bg: #{$white};
   --accent-color: #{$black};

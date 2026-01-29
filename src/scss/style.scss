@@ -8,10 +8,10 @@
     top: 0;
     left: 0;
     right: 0;
-    background-color: var(--header-bg);
     z-index: 999;
-    
-    transition: border-color 0.3s ease;
+    background-color: var(--bg-primary);
+    // transition: border-color 0.3s ease;
+    // transition: background-color 0.3s ease;
     
     [data-theme="light"] & {
       border-bottom: 1px solid var(--border-color);
@@ -65,13 +65,13 @@
 }
 
 .menu {
-  margin-left: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   position: relative;
   
   &__btn {
+    margin-left: 20px;
     position: relative;
     display: none;
     width: 40px;

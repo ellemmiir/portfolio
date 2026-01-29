@@ -1,10 +1,16 @@
+* {
+  -webkit-tap-highlight-color: transparent;
+  tap-highlight-color: transparent;
+}
+
+
 body {
   background-color: var(--bg-primary);
   @extend %semibold;
   font-size: 16px;
   line-height: 1.5;
   color: var(--text-primary);
-  transition: background-color 0.3s ease;
+  // transition: background-color 0.3s ease;
 }
 
 h1, h2, h3, h4, h5, h6, p, span, li {
@@ -60,6 +66,19 @@ svg {
   }
 }
 
+#waves {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+}
+
+
 
 .theme-toggle {
   position: relative;
@@ -69,7 +88,7 @@ svg {
   height: 40px;
   border: 1px solid var(--border-color); 
   border-radius: 50%;
-  cursor: pointer;
+
   transform: translateZ(0);
   transform-origin: center center;
   backface-visibility: hidden;
@@ -84,11 +103,12 @@ svg {
   
   .theme-icon {
     position: absolute;
-    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55),
-                opacity 0.3s ease;
-    fill: var(--text-primary);
     top: 50%;
     left: 50%;
+    fill: var(--text-primary);
+
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55),
+                opacity 0.3s ease;
     
     &--light {
       opacity: 0;
@@ -118,32 +138,17 @@ svg {
 .lang-toggle {
   margin-left: 15px;
   padding: 5px 10px;
+  min-width: 60px;
+  text-align: center;
   background-color: transparent;
   color: var(--text-primary);
   border: 1px solid var(--border-color);
   border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
   transition: all 0.3s ease;
-  min-width: 60px;
-  text-align: center;
-  font-family: inherit;
   
   &:hover {
     border-color: var(--accent-color);
-    background-color: var(--border-color);
   }
 }
 
 
-#waves {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 0;
-  width: 100%;
-  height: 100%;
-  image-rendering: -webkit-optimize-contrast;
-  image-rendering: crisp-edges;
-  image-rendering: pixelated;
-}
