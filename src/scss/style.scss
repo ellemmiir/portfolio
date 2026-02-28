@@ -1,7 +1,7 @@
 .header {
   position: relative;
   overflow: hidden;
-  
+
   &__top {
     padding: 20px 0;
     position: fixed;
@@ -10,35 +10,35 @@
     right: 0;
     z-index: 999;
     background-color: var(--bg-primary);
-    
+
     [data-theme="light"] & {
       border-bottom: 1px solid var(--border-color);
     }
   }
-  
+
   &__top-inner {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
-  
+
   &__logo {
     position: relative;
     z-index: 1000;
-    
+
     img {
       filter: invert(var(--wave-color-base));
       transition: filter 0.3s ease;
     }
   }
-  
+
   &__bottom {
     background-position: bottom center;
     background-repeat: no-repeat;
     background-size: cover;
     user-select: none;
   }
-  
+
   &__bottom-inner {
     padding-top: 86px;
     height: 100vh;
@@ -50,7 +50,7 @@
     line-height: 1.2;
     letter-spacing: 3px;
   }
-  
+
   &__bottom-title {
     position: relative;
     max-width: 900px;
@@ -67,7 +67,7 @@
   justify-content: space-between;
   align-items: center;
   position: relative;
-  
+
   &__btn {
     margin-left: 20px;
     position: relative;
@@ -78,45 +78,72 @@
     z-index: 1000;
     cursor: pointer;
     border: none;
-    
+
+    &-line,
     &::before,
     &::after {
       position: absolute;
-      content: '';
+      content: "";
       display: block;
       width: 100%;
       height: 4px;
       left: 0;
       border-radius: 10px;
       background-color: var(--text-1);
-      transition: all 0.3s ease;
     }
-    
+
     &::before {
       top: 0;
-      transition: box-shadow .3s .15s, top .3s .15s, transform .3s;
-      box-shadow: 0 11px 0 var(--text-1);
+      transition:
+        top 0.3s ease,
+        transform 0.3s ease;
     }
-    
+
+    &-line {
+      top: 11px;
+      transition: opacity 0.3s ease;
+    }
+
     &::after {
       bottom: 0;
-      transition: bottom .3s .15s, transform .3s;
+      transition:
+        bottom 0.3s ease,
+        transform 0.3s ease;
     }
-    
+
     &.active::before {
       top: 11px;
       transform: rotate(45deg);
-      box-shadow: 0 6px 0 rgba(0, 0, 0, 0);
-      transition: box-shadow .15s, top .3s, transform .3s .15s;
+      transition:
+        top 0.3s ease,
+        transform 0.3s ease 0.15s;
     }
-    
+
+    &.active &-line {
+      opacity: 0;
+    }
+
     &.active::after {
       bottom: 11px;
       transform: rotate(-45deg);
-      transition: bottom .3s, transform .3s .15s;
+      transition:
+        bottom 0.3s ease,
+        transform 0.3s ease 0.15s;
+    }
+
+    &:not(.active)::before {
+      transition:
+        transform 0.3s ease,
+        top 0.3s ease 0.15s;
+    }
+
+    &:not(.active)::after {
+      transition:
+        transform 0.3s ease,
+        bottom 0.3s ease 0.15s;
     }
   }
-  
+
   &__list {
     display: flex;
     justify-content: space-between;
@@ -125,15 +152,15 @@
     margin: 0;
     padding: 0;
   }
-  
+
   &__list-li {
     letter-spacing: 3px;
-    
+
     &:not(:last-child) {
       margin-right: 15px;
     }
   }
-  
+
   &__list-a {
     display: inline-block;
     padding: 5px;
@@ -143,7 +170,7 @@
     transition: all 0.3s ease;
     color: var(--text-1);
     text-decoration: none;
-    
+
     &:hover {
       color: var(--text-secondary);
     }
@@ -156,42 +183,42 @@
     justify-content: space-between;
     align-items: center;
   }
-  
+
   &__info {
     margin-left: 20px;
     padding-top: 50px;
     max-width: 600px;
     min-height: 600px;
     transition: opacity 0.4s ease;
-    
+
     &.fade-out {
       opacity: 0;
     }
-    
+
     &.fade-in {
       opacity: 1;
     }
   }
-  
+
   &__info-title {
     margin-bottom: 40px;
     display: inline-block;
     font-size: 30px;
     border-bottom: 1px solid var(--text-1);
     color: var(--text-1);
-    
-    transition: 
+
+    transition:
       color 0.3s ease,
       border-color 0.3s ease;
   }
-  
+
   &__info-subtitle {
     margin-bottom: 20px;
     text-align: right;
     color: var(--text-1);
     transition: color 0.3s ease;
   }
-  
+
   &__info-text {
     margin-bottom: 20px;
     @extend %light;
@@ -199,50 +226,36 @@
     color: var(--text-1);
     transition: color 0.3s ease;
   }
-  
+
   &__arrow {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
-  
-  &__lang-btn {
-    padding: 0;
-    background-color: transparent;
-    color: var(--text-1);
-    border: none;
-    transition: color .3s ease-in-out;
-    cursor: pointer;
-    font-family: inherit;
-    
-    &:hover {
-      color: var(--text-secondary);
-    }
-  }
 }
 
 .skills {
-  background-image: url('../images/skills.jpg');
+  background-image: url("../images/skills.jpg");
   background-repeat: no-repeat;
   background-size: 50%;
   background-position: right center;
-  
+
   &__inner {
     font-size: 14px;
     letter-spacing: 2px;
   }
-  
-  &__title{
-    margin-bottom: 60px !important; 
+
+  &__title {
+    margin-bottom: 60px !important;
   }
-  
+
   &__items {
     max-width: 450px;
     list-style: none;
     padding: 0;
     margin: 0;
   }
-  
+
   &__item {
     margin-bottom: 30px;
     padding-bottom: 10px;
@@ -251,18 +264,18 @@
     text-transform: uppercase;
     font-size: 18px;
     color: var(--text-1);
-    
-    transition: 
+
+    transition:
       color 0.3s ease,
       border-color 0.3s ease;
-    
+
     span {
       margin-right: 7px;
       position: absolute;
       display: block;
       right: 0;
       bottom: -26px;
-      
+
       &:before {
         content: "";
         position: absolute;
@@ -274,7 +287,7 @@
         transition: background-color 0.3s ease;
       }
     }
-    
+
     p {
       position: absolute;
       right: 0;
@@ -282,7 +295,7 @@
       margin: 0;
     }
   }
-  
+
   &__text {
     @extend %light;
     font-size: 15px;
@@ -290,9 +303,6 @@
     transition: color 0.3s ease;
   }
 }
-
-
-
 
 .works {
   &__inner {
@@ -302,11 +312,11 @@
     grid-template-rows: repeat(1, 1fr);
     gap: 20px;
   }
-  
+
   &__title {
     text-align: center;
   }
-  
+
   &__item {
     background-position: top center;
     background-repeat: no-repeat;
@@ -315,11 +325,10 @@
     padding: 20px;
     height: 500px;
     overflow: hidden;
-    transition: all .5s ease-out;
-    
-    &:hover {
+    transition: all 0.5s ease-out;
 
-      .works__item-box{
+    &:hover {
+      .works__item-box {
         border: 2px solid var(--text-1);
       }
 
@@ -327,14 +336,14 @@
         border-bottom-color: var(--text-1);
         color: var(--text-1);
       }
-      
+
       .works__item-num {
         span {
           left: 43%;
           transform: translate(-50%, -50%);
           background-color: var(--text-1);
         }
-        
+
         p {
           right: 43%;
           transform: translate(50%, -50%);
@@ -342,7 +351,7 @@
         }
       }
 
-      .works__item-box p{
+      .works__item-box p {
         color: var(--text-1);
       }
 
@@ -351,7 +360,7 @@
       }
     }
   }
-  
+
   &__item-link {
     position: absolute;
     top: 0;
@@ -360,23 +369,23 @@
     right: 0;
     text-decoration: none;
     color: inherit;
-    
+
     &::before {
       position: absolute;
-      content: '';
+      content: "";
       width: 100%;
       height: 100%;
       background-color: var(--text-1);
       opacity: 0.6;
-      transition: all .5s ease-out;
+      transition: all 0.5s ease-out;
     }
-    
+
     &:hover::before {
       opacity: 1;
       background-color: var(--bg-primary);
     }
   }
-  
+
   &__item-box {
     position: relative;
     display: flex;
@@ -386,7 +395,7 @@
     height: 100%;
     z-index: 1;
     border: 2px solid transparent;
-    
+
     p {
       letter-spacing: 3px;
       margin: 0;
@@ -394,18 +403,18 @@
       transition: color 0.3s ease;
     }
   }
-  
+
   &__item-num {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    height: 60px; 
-    padding: 0 30px; 
-    
+    height: 60px;
+    padding: 0 30px;
+
     span {
       position: absolute;
-      left: 30px; 
+      left: 30px;
       top: 50%;
       transform: translateY(-50%);
       width: 30px;
@@ -413,10 +422,10 @@
       background-color: var(--text-2);
       transition: all 0.5s ease-out;
     }
-    
+
     p {
       position: absolute;
-      right: 30px; 
+      right: 30px;
       top: 50%;
       transform: translateY(-50%);
       font-size: 26px;
@@ -426,7 +435,7 @@
       transition: all 0.5s ease-out;
     }
   }
-  
+
   &__item-subtitle {
     display: block;
     margin-top: auto;
@@ -434,7 +443,7 @@
     font-size: 24px;
     transition: color 0.3s ease;
   }
-  
+
   &__item-title {
     margin-bottom: 30px;
     padding: 10px 0;
@@ -444,22 +453,22 @@
     color: var(--text-2);
     transition: all 0.3s ease;
   }
-  
+
   &__item-info {
     margin-bottom: 10px;
     transition: color 0.3s ease;
   }
-  
+
   &__item-text {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
     font-size: 18px;
     transition: color 0.3s ease;
-    
+
     svg {
       margin-left: 5px;
-      
+
       path {
         fill: var(--text-2);
         transition: fill 0.3s ease;
@@ -468,55 +477,49 @@
   }
 }
 
-
-
-
 .resume {
   text-align: center;
   margin-top: 20px;
-  
+
   &__text {
     font-size: 30px;
     margin-bottom: 20px;
     color: var(--text-1);
     transition: color 0.3s ease;
   }
-  
+
   &__title {
     font-size: 120px;
     transition: all 0.3s ease;
     color: var(--text-1);
     text-decoration: none;
-    
+
     &:hover {
       color: var(--text-secondary);
     }
   }
-  
+
   &__arrow {
     margin-bottom: 20px;
   }
 }
 
-
 .footer {
   padding: 50px 0 20px;
   background-color: var(--bg-primary);
-  
-  transition: background-color 0.3s ease;
-  
+
   &__inner {
     margin-bottom: 50px;
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
-  
+
   &__box {
     margin-bottom: 30px;
     margin-right: 20px;
   }
-  
+
   &__box-email {
     font-size: 42px;
     display: inline-block;
@@ -524,7 +527,7 @@
     color: var(--text-1);
     text-decoration: none;
     transition: color 0.3s ease;
-    
+
     &::before,
     &::after {
       position: absolute;
@@ -536,59 +539,61 @@
       background-color: var(--text-1);
       transition: all 1s ease-out;
     }
-    
+
     &::before {
       transform: scaleX(0);
       transform-origin: left;
     }
-    
+
     &::after {
       transform-origin: right;
       transition-delay: 0.2s;
     }
-    
+
     &:hover {
       &::before {
         transform: scaleX(1);
         transition-delay: 0.2s;
       }
-      
+
       &::after {
         transform: scaleX(0);
         transition-delay: 0s;
       }
     }
   }
-  
+
   &__list {
     list-style: none;
     padding: 0;
     margin: 0;
   }
-  
+
   &__list-li {
     font-size: 18px;
     margin-bottom: 15px;
-    
+
     span {
       color: var(--text-1);
       transition: color 0.3s ease;
     }
   }
-  
+
   &__list-a {
     padding-left: 5px;
     @extend %light;
     opacity: 0.8;
-    transition: opacity .3s ease-out, color 0.3s ease;
+    transition:
+      opacity 0.3s ease-out,
+      color 0.3s ease;
     color: var(--text-1);
     text-decoration: none;
-    
+
     &:hover {
       opacity: 1;
     }
   }
-  
+
   &__text {
     @extend %light;
     text-align: center;
@@ -597,4 +602,3 @@
     transition: color 0.3s ease;
   }
 }
-

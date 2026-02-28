@@ -5,7 +5,9 @@ $maxWidth: 1200;
   $addMobSize: $addSize + $addSize * 0.7;
 
   @media (max-width: 767px) {
-    font-size: calc(#{$mobSize + px} + #{$addMobSize} * ((100vw - 320px) / #{$maxWidth}));
+    font-size: calc(
+      #{$mobSize + px} + #{$addMobSize} * ((100vw - 320px) / #{$maxWidth})
+    );
   }
 
   @media (min-width: 767px) {
@@ -22,6 +24,15 @@ $maxWidth: 1200;
 }
 
 @media (max-width: 1200px) {
+  .theme-toggle:hover {
+    border: 1px solid var(--border-color);
+    transform: translateZ(0);
+  }
+
+  .lang-toggle:hover {
+    border: 1px solid var(--border-color);
+  }
+
   .title {
     font-size: 100px;
   }
@@ -39,6 +50,9 @@ $maxWidth: 1200;
   .menu {
     &__list-a {
       @include adaptiv-font(24, 18);
+      &:hover {
+        color: var(--text-1);
+      }
     }
   }
 
@@ -71,7 +85,47 @@ $maxWidth: 1200;
     }
     &__item {
       height: 450px;
+      &:hover {
+        .works__item-box {
+          border: 2px solid transparent;
+        }
+        .works__item-title {
+          border-bottom-color: var(--text-2);
+          color: var(--text-2);
+        }
+        .works__item-num {
+          span {
+            left: 30px;
+            transform: translateY(-50%);
+            background-color: var(--text-2);
+          }
+
+          p {
+            right: 30px;
+            transform: translateY(-50%);
+            color: var(--text-2);
+          }
+        }
+        .works__item-box p {
+          color: var(--text-2);
+        }
+
+        svg path {
+          fill: var(--text-2);
+        }
+      }
     }
+
+    &__item-link {
+      &::before {
+        opacity: 0.8;
+      }
+      &:hover::before {
+        opacity: 0.8;
+        background-color: var(--text-1);
+      }
+    }
+
     &__item-subtitle {
       @include adaptiv-font(24, 16);
     }
@@ -79,10 +133,13 @@ $maxWidth: 1200;
       @include adaptiv-font(56, 20);
     }
   }
-  
+
   .resume {
     &__title {
       font-size: 100px;
+      &:hover {
+        color: var(--text-1);
+      }
     }
   }
 
@@ -100,6 +157,9 @@ $maxWidth: 1200;
     }
     &__text {
       text-align: left;
+    }
+    &__list-a:hover {
+      opacity: 0.8;
     }
   }
 }
@@ -174,7 +234,7 @@ $maxWidth: 1200;
   }
 
   .header {
-    &__bottom-title{
+    &__bottom-title {
       font-size: 50px;
       letter-spacing: 2px;
     }
@@ -188,30 +248,19 @@ $maxWidth: 1200;
     }
 
     &__item {
-      height: 300px;
+      height: 350px;
       padding: 10px;
     }
 
     &__item-box {
       padding: 10px;
-    }
-
-    &__item-num {
-      span {
-        display: none;
+      p {
+        letter-spacing: 1px;
       }
     }
 
-    &__item-text {
-      display: none;
-    }
-
-    &__item-info {
-      display: none;
-    }
-
     &__item-subtitle {
-      font-size: 18px;
+      font-size: 22px;
     }
 
     &__item-title {
@@ -228,7 +277,7 @@ $maxWidth: 1200;
       font-size: 60px;
     }
   }
-  
+
   .footer {
     &__box-email {
       font-size: 24px;

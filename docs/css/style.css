@@ -83,7 +83,7 @@
     border: none;
 }
 
-.menu__btn::before, .menu__btn::after {
+.menu__btn-line, .menu__btn::before, .menu__btn::after {
     position: absolute;
     content: "";
     display: block;
@@ -92,31 +92,45 @@
     left: 0;
     border-radius: 10px;
     background-color: var(--text-1);
-    transition: all 0.3s ease;
 }
 
 .menu__btn::before {
     top: 0;
-    transition: box-shadow 0.3s 0.15s, top 0.3s 0.15s, transform 0.3s;
-    box-shadow: 0 11px 0 var(--text-1);
+    transition: top 0.3s ease, transform 0.3s ease;
+}
+
+.menu__btn-line {
+    top: 11px;
+    transition: opacity 0.3s ease;
 }
 
 .menu__btn::after {
     bottom: 0;
-    transition: bottom 0.3s 0.15s, transform 0.3s;
+    transition: bottom 0.3s ease, transform 0.3s ease;
 }
 
 .menu__btn.active::before {
     top: 11px;
     transform: rotate(45deg);
-    box-shadow: 0 6px 0 rgba(0, 0, 0, 0);
-    transition: box-shadow 0.15s, top 0.3s, transform 0.3s 0.15s;
+    transition: top 0.3s ease, transform 0.3s ease 0.15s;
+}
+
+.menu__btn.active .menu__btn-line {
+    opacity: 0;
 }
 
 .menu__btn.active::after {
     bottom: 11px;
     transform: rotate(-45deg);
-    transition: bottom 0.3s, transform 0.3s 0.15s;
+    transition: bottom 0.3s ease, transform 0.3s ease 0.15s;
+}
+
+.menu__btn:not(.active)::before {
+    transition: transform 0.3s ease, top 0.3s ease 0.15s;
+}
+
+.menu__btn:not(.active)::after {
+    transition: transform 0.3s ease, bottom 0.3s ease 0.15s;
 }
 
 .menu__list {
@@ -199,20 +213,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-.about__lang-btn {
-    padding: 0;
-    background-color: transparent;
-    color: var(--text-1);
-    border: none;
-    transition: color 0.3s ease-in-out;
-    cursor: pointer;
-    font-family: inherit;
-}
-
-.about__lang-btn:hover {
-    color: var(--text-secondary);
 }
 
 .skills {
@@ -478,7 +478,6 @@
 .footer {
     padding: 50px 0 20px;
     background-color: var(--bg-primary);
-    transition: background-color 0.3s ease;
 }
 
 .footer__inner {
@@ -744,6 +743,15 @@ svg path {
 }
 
 @media (max-width: 1200px) {
+    .theme-toggle:hover {
+        border: 1px solid var(--border-color);
+        transform: translateZ(0);
+    }
+
+    .lang-toggle:hover {
+        border: 1px solid var(--border-color);
+    }
+
     .title {
         font-size: 100px;
     }
@@ -770,6 +778,10 @@ svg path {
 }
 
 @media (max-width: 1200px) {
+    .menu__list-a:hover {
+        color: var(--text-1);
+    }
+
     .about__inner {
         display: flex;
         flex-direction: column;
@@ -799,6 +811,44 @@ svg path {
 
     .works__item {
         height: 450px;
+    }
+
+    .works__item:hover .works__item-box {
+        border: 2px solid transparent;
+    }
+
+    .works__item:hover .works__item-title {
+        border-bottom-color: var(--text-2);
+        color: var(--text-2);
+    }
+
+    .works__item:hover .works__item-num span {
+        left: 30px;
+        transform: translateY(-50%);
+        background-color: var(--text-2);
+    }
+
+    .works__item:hover .works__item-num p {
+        right: 30px;
+        transform: translateY(-50%);
+        color: var(--text-2);
+    }
+
+    .works__item:hover .works__item-box p {
+        color: var(--text-2);
+    }
+
+    .works__item:hover svg path {
+        fill: var(--text-2);
+    }
+
+    .works__item-link::before {
+        opacity: 0.8;
+    }
+
+    .works__item-link:hover::before {
+        opacity: 0.8;
+        background-color: var(--text-1);
     }
 }
 
@@ -831,6 +881,10 @@ svg path {
         font-size: 100px;
     }
 
+    .resume__title:hover {
+        color: var(--text-1);
+    }
+
     .footer__inner {
         flex-direction: column;
         align-items: flex-start;
@@ -857,6 +911,10 @@ svg path {
 @media (max-width: 1200px) {
     .footer__text {
         text-align: left;
+    }
+
+    .footer__list-a:hover {
+        opacity: 0.8;
     }
 }
 
@@ -947,7 +1005,7 @@ svg path {
     }
 
     .works__item {
-        height: 300px;
+        height: 350px;
         padding: 10px;
     }
 
@@ -955,20 +1013,12 @@ svg path {
         padding: 10px;
     }
 
-    .works__item-num span {
-        display: none;
-    }
-
-    .works__item-text {
-        display: none;
-    }
-
-    .works__item-info {
-        display: none;
+    .works__item-box p {
+        letter-spacing: 1px;
     }
 
     .works__item-subtitle {
-        font-size: 18px;
+        font-size: 22px;
     }
 
     .works__item-title {
