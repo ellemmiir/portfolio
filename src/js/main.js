@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-
   const translations = {
     ru: {
       meta: {
@@ -113,7 +112,6 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   };
 
-
   class ThemeManager {
     constructor() {
       this.themes = ["dark", "light"];
@@ -190,215 +188,213 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-
   const themeManager = new ThemeManager();
 
-class I18n {
-  constructor() {
-    this.translations = translations;
-    this.currentLang = "en";
-    this.init();
-  }
-
-  init() {
-    this.detectLanguage();
-    this.applyLanguage(this.currentLang);
-    this.initListeners();
-  }
-
-  detectLanguage() {
-    const savedLang = localStorage.getItem("preferredLanguage");
-    const browserLang = navigator.language.split("-")[0];
-
-    if (savedLang && (savedLang === "ru" || savedLang === "en")) {
-      this.currentLang = savedLang;
-    } else if (browserLang === "ru") {
-      this.currentLang = "ru";
-    } else {
+  class I18n {
+    constructor() {
+      this.translations = translations;
       this.currentLang = "en";
+      this.init();
     }
-  }
 
-  applyLanguage(lang) {
-    if (!this.translations || !this.translations[lang]) return;
-
-    this.currentLang = lang;
-    localStorage.setItem("preferredLanguage", lang);
-    document.documentElement.lang = lang;
-    document.title = this.translations[lang].meta.title;
-
-    this.updateAllTranslations();
-    this.updateLanguageButton();
-    this.updateRussianTextClasses();
-  }
-
-updateAllTranslations() {
-  document.querySelectorAll("[data-i18n]").forEach((element) => {
-    const key = element.dataset.i18n;
-    const value = this.getTranslation(key);
-    if (value === undefined) return;
-
-    const children = Array.from(element.children);
-    const svg = element.querySelector('svg');
-    
-    if (children.length > 0) {
-      const childHTML = children.map(child => child.outerHTML).join('');
-      
-      element.innerHTML = '';
-      
-      element.appendChild(document.createTextNode(value));
-      
-      if (svg && element.lastChild.nodeType === Node.TEXT_NODE) {
-        element.lastChild.textContent += ' ';
-      }
-      
-      element.insertAdjacentHTML('beforeend', childHTML);
-    } 
-    else if (svg) {
-      const svgHtml = svg.outerHTML;
-      element.innerHTML = '';
-      const textNode = document.createTextNode(value + ' ');
-      element.appendChild(textNode);
-      element.insertAdjacentHTML('beforeend', svgHtml);
-    } 
-    else {
-      element.textContent = value;
+    init() {
+      this.detectLanguage();
+      this.applyLanguage(this.currentLang);
+      this.initListeners();
     }
-  });
 
-  document.querySelectorAll("[data-i18n-alt]").forEach((element) => {
-    const key = element.dataset.i18nAlt;
-    const value = this.getTranslation(key);
-    if (value !== undefined) element.alt = value;
-  });
+    detectLanguage() {
+      const savedLang = localStorage.getItem("preferredLanguage");
+      const browserLang = navigator.language.split("-")[0];
 
-  document.querySelectorAll("[data-i18n-placeholder]").forEach((element) => {
-    const key = element.dataset.i18nPlaceholder;
-    const value = this.getTranslation(key);
-    if (value !== undefined) element.placeholder = value;
-  });
-}
-
-  updateWorksCards() {
-    document.querySelectorAll(".works__item").forEach((card, index) => {
-      const subtitle = card.querySelector(".works__item-subtitle");
-      if (subtitle && subtitle.dataset.i18n) {
-        const value = this.getTranslation(subtitle.dataset.i18n);
-        if (value) subtitle.textContent = value;
+      if (savedLang && (savedLang === "ru" || savedLang === "en")) {
+        this.currentLang = savedLang;
+      } else if (browserLang === "ru") {
+        this.currentLang = "ru";
+      } else {
+        this.currentLang = "en";
       }
-      
-      const textElement = card.querySelector(".works__item-text");
-      if (textElement && textElement.dataset.i18n) {
-        const value = this.getTranslation(textElement.dataset.i18n);
-        if (value) {
-          const svg = textElement.querySelector('svg');
-          if (svg) {
-            const svgHtml = svg.outerHTML;
-            textElement.innerHTML = value + ' ' + svgHtml;
-          } else {
-            textElement.textContent = value;
+    }
+
+    applyLanguage(lang) {
+      if (!this.translations || !this.translations[lang]) return;
+
+      this.currentLang = lang;
+      localStorage.setItem("preferredLanguage", lang);
+      document.documentElement.lang = lang;
+      document.title = this.translations[lang].meta.title;
+
+      this.updateAllTranslations();
+      this.updateLanguageButton();
+      this.updateRussianTextClasses();
+    }
+
+    updateAllTranslations() {
+      document.querySelectorAll("[data-i18n]").forEach((element) => {
+        const key = element.dataset.i18n;
+        const value = this.getTranslation(key);
+        if (value === undefined) return;
+
+        const children = Array.from(element.children);
+        const svg = element.querySelector("svg");
+
+        if (children.length > 0) {
+          const childHTML = children.map((child) => child.outerHTML).join("");
+
+          element.innerHTML = "";
+
+          element.appendChild(document.createTextNode(value));
+
+          if (svg && element.lastChild.nodeType === Node.TEXT_NODE) {
+            element.lastChild.textContent += " ";
+          }
+
+          element.insertAdjacentHTML("beforeend", childHTML);
+        } else if (svg) {
+          const svgHtml = svg.outerHTML;
+          element.innerHTML = "";
+          const textNode = document.createTextNode(value + " ");
+          element.appendChild(textNode);
+          element.insertAdjacentHTML("beforeend", svgHtml);
+        } else {
+          element.textContent = value;
+        }
+      });
+
+      document.querySelectorAll("[data-i18n-alt]").forEach((element) => {
+        const key = element.dataset.i18nAlt;
+        const value = this.getTranslation(key);
+        if (value !== undefined) element.alt = value;
+      });
+
+      document
+        .querySelectorAll("[data-i18n-placeholder]")
+        .forEach((element) => {
+          const key = element.dataset.i18nPlaceholder;
+          const value = this.getTranslation(key);
+          if (value !== undefined) element.placeholder = value;
+        });
+    }
+
+    updateWorksCards() {
+      document.querySelectorAll(".works__item").forEach((card, index) => {
+        const subtitle = card.querySelector(".works__item-subtitle");
+        if (subtitle && subtitle.dataset.i18n) {
+          const value = this.getTranslation(subtitle.dataset.i18n);
+          if (value) subtitle.textContent = value;
+        }
+
+        const textElement = card.querySelector(".works__item-text");
+        if (textElement && textElement.dataset.i18n) {
+          const value = this.getTranslation(textElement.dataset.i18n);
+          if (value) {
+            const svg = textElement.querySelector("svg");
+            if (svg) {
+              const svgHtml = svg.outerHTML;
+              textElement.innerHTML = value + " " + svgHtml;
+            } else {
+              textElement.textContent = value;
+            }
           }
         }
-      }
-    });
-  }
-
-  getTranslation(key) {
-    if (!this.translations || !this.translations[this.currentLang])
-      return undefined;
-
-    const keys = key.split(".");
-    let value = this.translations[this.currentLang];
-
-    for (const k of keys) {
-      if (value && value[k] !== undefined) {
-        value = value[k];
-      } else {
-        return undefined;
-      }
-    }
-    return value;
-  }
-
-  updateLanguageButton() {
-    const btn = document.getElementById("lang-toggle");
-    if (btn) {
-      const text = this.getTranslation("about.langBtn");
-      if (text) btn.textContent = text;
-    }
-  }
-
-  updateRussianTextClasses() {
-    if (this.currentLang === "ru") {
-      document.body.classList.add("lang-ru");
-    } else {
-      document.body.classList.remove("lang-ru");
-    }
-
-    const selectors = [
-      ".about__info-text",
-      ".skills__text",
-      ".footer__text",
-      ".menu__list-a",
-      ".header__bottom-title",
-      ".about__title",
-      ".skills__title",
-      ".works__title",
-      ".works__item-subtitle",
-      ".works__item-text",
-      ".resume__text",
-      ".resume__title",
-      ".footer__list-a",
-      ".footer__list-li span",
-      ".skills__item",
-    ];
-
-    const textElements = document.querySelectorAll(selectors.join(", "));
-    textElements.forEach((element) => {
-      if (this.currentLang === "ru") {
-        element.classList.add("ru-text");
-      } else {
-        element.classList.remove("ru-text");
-      }
-    });
-  }
-
-  toggleLanguage() {
-    const newLang = this.currentLang === "en" ? "ru" : "en";
-    this.applyLanguage(newLang);
-    this.animateTransition();
-  }
-
-  animateTransition() {
-    const content = document.querySelector("main") || document.body;
-    content.style.opacity = "0.7";
-    content.style.transition = "opacity 0.3s ease";
-
-    setTimeout(() => {
-      content.style.opacity = "1";
-    }, 300);
-  }
-
-  initListeners() {
-    const langBtn = document.getElementById("lang-toggle");
-    if (langBtn) {
-      langBtn.addEventListener("click", () => this.toggleLanguage());
-    }
-
-    const menuBtn = document.querySelector(".menu__btn");
-    if (menuBtn) {
-      menuBtn.addEventListener("click", () => {
-        setTimeout(() => {
-          this.updateAllTranslations();
-          this.updateRussianTextClasses();
-        }, 100);
       });
     }
+
+    getTranslation(key) {
+      if (!this.translations || !this.translations[this.currentLang])
+        return undefined;
+
+      const keys = key.split(".");
+      let value = this.translations[this.currentLang];
+
+      for (const k of keys) {
+        if (value && value[k] !== undefined) {
+          value = value[k];
+        } else {
+          return undefined;
+        }
+      }
+      return value;
+    }
+
+    updateLanguageButton() {
+      const btn = document.getElementById("lang-toggle");
+      if (btn) {
+        const text = this.getTranslation("about.langBtn");
+        if (text) btn.textContent = text;
+      }
+    }
+
+    updateRussianTextClasses() {
+      if (this.currentLang === "ru") {
+        document.body.classList.add("lang-ru");
+      } else {
+        document.body.classList.remove("lang-ru");
+      }
+
+      const selectors = [
+        ".about__info-text",
+        ".skills__text",
+        ".footer__text",
+        ".menu__list-a",
+        ".header__bottom-title",
+        ".about__title",
+        ".skills__title",
+        ".works__title",
+        ".works__item-subtitle",
+        ".works__item-text",
+        ".resume__text",
+        ".resume__title",
+        ".footer__list-a",
+        ".footer__list-li span",
+        ".skills__item",
+      ];
+
+      const textElements = document.querySelectorAll(selectors.join(", "));
+      textElements.forEach((element) => {
+        if (this.currentLang === "ru") {
+          element.classList.add("ru-text");
+        } else {
+          element.classList.remove("ru-text");
+        }
+      });
+    }
+
+    toggleLanguage() {
+      const newLang = this.currentLang === "en" ? "ru" : "en";
+      this.applyLanguage(newLang);
+      this.animateTransition();
+    }
+
+    animateTransition() {
+      const content = document.querySelector("main") || document.body;
+      content.style.opacity = "0.7";
+      content.style.transition = "opacity 0.3s ease";
+
+      setTimeout(() => {
+        content.style.opacity = "1";
+      }, 300);
+    }
+
+    initListeners() {
+      const langBtn = document.getElementById("lang-toggle");
+      if (langBtn) {
+        langBtn.addEventListener("click", () => this.toggleLanguage());
+      }
+
+      const menuBtn = document.querySelector(".menu__btn");
+      if (menuBtn) {
+        menuBtn.addEventListener("click", () => {
+          setTimeout(() => {
+            this.updateAllTranslations();
+            this.updateRussianTextClasses();
+          }, 100);
+        });
+      }
+    }
   }
-}
 
-const i18n = new I18n();
-
+  const i18n = new I18n();
 
   const menuBtn = document.querySelector(".menu__btn");
   const menuList = document.querySelector(".menu__list");
@@ -544,7 +540,6 @@ const i18n = new I18n();
 
   document.documentElement.style.scrollBehavior = "auto";
 
-
   const canvas = document.getElementById("waves");
   if (canvas) {
     const ctx = canvas.getContext("2d");
@@ -563,7 +558,7 @@ const i18n = new I18n();
 
     function calculatePoints() {
       if (window.innerWidth <= 480) {
-        return 10;
+        return 12;
       } else if (window.innerWidth <= 767) {
         return 15;
       } else if (window.innerWidth <= 991) {
@@ -730,16 +725,16 @@ const i18n = new I18n();
         mouseOffsetY = 0;
         targetOffsetY = 0;
       } else {
-        mouseOffsetY = lerp(mouseOffsetY, targetOffsetY, 0.05);
+        mouseOffsetY = lerp(mouseOffsetY, targetOffsetY, 0.06);
       }
 
-      const mouseInfluence = window.innerWidth <= 767 ? 0 : 0.15;
-      const mouseRadius = window.innerWidth <= 767 ? 0 : width / pixelRatio / 8;
+      const mouseInfluence = window.innerWidth <= 767 ? 0 : 0.25;
+      const mouseRadius = window.innerWidth <= 767 ? 0 : width / pixelRatio / 7;
 
       for (let j = 0; j < points; j++) {
         for (let i = 0; i < waveCount; i++) {
           const p = waves[i].points[j];
-          p.offset += 0.008;
+          p.offset += 0.009;
 
           const frequency = window.innerWidth <= 767 ? 0.15 : 0.1;
           const waveMotion = Math.sin(p.offset + j * frequency) * p.amplitude;
@@ -776,7 +771,7 @@ const i18n = new I18n();
               neighborDeviation * 0.95 +
               layerOffset +
               mouseEffect,
-            0.05,
+            0.06,
           );
         }
       }
@@ -784,25 +779,27 @@ const i18n = new I18n();
       for (let i = 0; i < waveCount; i++) {
         const wave = waves[i];
         const pts = wave.points;
+
         ctx.beginPath();
         ctx.moveTo(pts[0].x, pts[0].y);
 
         for (let j = 0; j < pts.length - 1; j++) {
-          const cpx = (pts[j].x + pts[j + 1].x) / 2;
-          const cpy = (pts[j].y + pts[j + 1].y) / 2;
-          ctx.quadraticCurveTo(pts[j].x, pts[j].y, cpx, cpy);
+          const xc = (pts[j].x + pts[j + 1].x) / 2;
+          const yc = (pts[j].y + pts[j + 1].y) / 2;
+          ctx.quadraticCurveTo(pts[j].x, pts[j].y, xc, yc);
         }
 
-        const last = pts[pts.length - 1];
-        ctx.lineTo(last.x, last.y);
+        ctx.lineTo(pts[pts.length - 1].x, pts[pts.length - 1].y);
 
         wave.color = getWaveColor(i);
         ctx.strokeStyle = wave.color;
 
         if (window.innerWidth <= 767) {
-          ctx.lineWidth = 0.9;
-        } else {
           ctx.lineWidth = 1;
+        } else if (window.innerWidth <= 1440) {
+          ctx.lineWidth = 1.2;
+        } else {
+          ctx.lineWidth = 1.5;
         }
 
         ctx.lineCap = "round";
