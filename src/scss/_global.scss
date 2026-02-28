@@ -9,12 +9,12 @@ body {
   @extend %semibold;
   font-size: 16px;
   line-height: 1.5;
-  color: var(--text-primary);
+  color: var(--text-1);
   // transition: background-color 0.3s ease;
 }
 
 h1, h2, h3, h4, h5, h6, p, span, li {
-  color: var(--text-primary);
+  color: var(--text-1);
   transition: color 0.3s ease;
 }
 
@@ -33,7 +33,7 @@ h1, h2, h3, h4, h5, h6, p, span, li {
 
 a {
   @extend %semibold;
-  color: var(--text-primary);
+  color: var(--text-1);
   text-decoration: none;
   transition: color 0.3s ease;
 }
@@ -55,13 +55,13 @@ section {
   font-size: 120px;
   line-height: 1;
   @extend %semibold;
-  color: var(--text-primary);
+  color: var(--text-1);
   text-transform: uppercase;
 }
 
 svg {
   path {
-    fill: var(--text-primary);
+    fill: var(--text-1);
     transition: fill 0.3s ease;
   }
 }
@@ -105,7 +105,7 @@ svg {
     position: absolute;
     top: 50%;
     left: 50%;
-    fill: var(--text-primary);
+    fill: var(--text-1);
 
     transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55),
                 opacity 0.3s ease;

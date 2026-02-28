@@ -10,8 +10,6 @@
     right: 0;
     z-index: 999;
     background-color: var(--bg-primary);
-    // transition: border-color 0.3s ease;
-    // transition: background-color 0.3s ease;
     
     [data-theme="light"] & {
       border-bottom: 1px solid var(--border-color);
@@ -59,7 +57,7 @@
     font-size: 120px;
     text-transform: uppercase;
     z-index: 1;
-    color: var(--text-primary);
+    color: var(--text-1);
     transition: color 0.3s ease;
   }
 }
@@ -90,14 +88,14 @@
       height: 4px;
       left: 0;
       border-radius: 10px;
-      background-color: var(--text-primary);
+      background-color: var(--text-1);
       transition: all 0.3s ease;
     }
     
     &::before {
       top: 0;
       transition: box-shadow .3s .15s, top .3s .15s, transform .3s;
-      box-shadow: 0 11px 0 var(--text-primary);
+      box-shadow: 0 11px 0 var(--text-1);
     }
     
     &::after {
@@ -143,7 +141,7 @@
     @extend %medium;
     text-transform: uppercase;
     transition: all 0.3s ease;
-    color: var(--text-primary);
+    color: var(--text-1);
     text-decoration: none;
     
     &:hover {
@@ -179,8 +177,8 @@
     margin-bottom: 40px;
     display: inline-block;
     font-size: 30px;
-    border-bottom: 1px solid var(--accent-color);
-    color: var(--text-primary);
+    border-bottom: 1px solid var(--text-1);
+    color: var(--text-1);
     
     transition: 
       color 0.3s ease,
@@ -190,7 +188,7 @@
   &__info-subtitle {
     margin-bottom: 20px;
     text-align: right;
-    color: var(--text-primary);
+    color: var(--text-1);
     transition: color 0.3s ease;
   }
   
@@ -198,7 +196,7 @@
     margin-bottom: 20px;
     @extend %light;
     font-size: 18px;
-    color: var(--text-primary);
+    color: var(--text-1);
     transition: color 0.3s ease;
   }
   
@@ -211,7 +209,7 @@
   &__lang-btn {
     padding: 0;
     background-color: transparent;
-    color: var(--text-primary);
+    color: var(--text-1);
     border: none;
     transition: color .3s ease-in-out;
     cursor: pointer;
@@ -234,8 +232,8 @@
     letter-spacing: 2px;
   }
   
-  &__title {
-    margin-bottom: 60px;
+  &__title{
+    margin-bottom: 60px !important; 
   }
   
   &__items {
@@ -249,10 +247,10 @@
     margin-bottom: 30px;
     padding-bottom: 10px;
     position: relative;
-    border-bottom: 2px solid var(--accent-color);
+    border-bottom: 2px solid var(--text-1);
     text-transform: uppercase;
     font-size: 18px;
-    color: var(--text-primary);
+    color: var(--text-1);
     
     transition: 
       color 0.3s ease,
@@ -288,14 +286,17 @@
   &__text {
     @extend %light;
     font-size: 15px;
-    color: var(--text-primary);
+    color: var(--text-1);
     transition: color 0.3s ease;
   }
 }
 
+
+
+
 .works {
   &__inner {
-    padding: 50px 15px 0;
+    padding: 100px 15px 0;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(1, 1fr);
@@ -317,28 +318,36 @@
     transition: all .5s ease-out;
     
     &:hover {
-      .works__item-num span {
-        background-color: var(--accent-color);
+
+      .works__item-box{
+        border: 2px solid var(--text-1);
       }
-      
+
       .works__item-title {
-        border-bottom: 3px solid var(--accent-color);
+        border-bottom-color: var(--text-1);
+        color: var(--text-1);
       }
       
       .works__item-num {
         span {
-          left: 40%;
+          left: 43%;
+          transform: translate(-50%, -50%);
+          background-color: var(--text-1);
         }
         
         p {
-          right: 40%;
+          right: 43%;
+          transform: translate(50%, -50%);
+          color: var(--text-1);
         }
       }
-      
-      svg {
-        path {
-          fill: var(--accent-color);
-        }
+
+      .works__item-box p{
+        color: var(--text-1);
+      }
+
+      svg path {
+        fill: var(--text-1);
       }
     }
   }
@@ -354,19 +363,17 @@
     
     &::before {
       position: absolute;
-      content: ' ';
+      content: '';
       width: 100%;
       height: 100%;
-      background-color: var(--accent-color);
+      background-color: var(--text-1);
       opacity: 0.6;
       transition: all .5s ease-out;
     }
     
-    &:hover {
-      &::before {
-        opacity: 1;
-        background-color: var(--bg-primary);
-      }
+    &:hover::before {
+      opacity: 1;
+      background-color: var(--bg-primary);
     }
   }
   
@@ -378,39 +385,45 @@
     padding: 20px;
     height: 100%;
     z-index: 1;
+    border: 2px solid transparent;
     
     p {
       letter-spacing: 3px;
       margin: 0;
-      color: var(--text-primary);
+      color: var(--text-2);
       transition: color 0.3s ease;
-    }
-    
-    &:hover {
-      color: var(--bg-primary);
     }
   }
   
   &__item-num {
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px; 
+    padding: 0 30px; 
     
     span {
       position: absolute;
-      margin-right: 5px;
-      height: 2px;
+      left: 30px; 
+      top: 50%;
+      transform: translateY(-50%);
       width: 30px;
-      top: 18px;
-      left: 0;
-      background-color: var(--accent-color);
-      transition: all .5s ease-out, background-color 0.3s ease;
+      height: 2px;
+      background-color: var(--text-2);
+      transition: all 0.5s ease-out;
     }
     
     p {
       position: absolute;
-      top: 0;
-      right: 0;
+      right: 30px; 
+      top: 50%;
+      transform: translateY(-50%);
       font-size: 26px;
-      transition: all .5s ease-out;
+      margin: 0;
+      line-height: 1;
+      color: var(--text-2);
+      transition: all 0.5s ease-out;
     }
   }
   
@@ -419,7 +432,6 @@
     margin-top: auto;
     margin-bottom: 5px;
     font-size: 24px;
-    color: var(--text-primary);
     transition: color 0.3s ease;
   }
   
@@ -428,37 +440,36 @@
     padding: 10px 0;
     font-size: 56px;
     line-height: 1;
-    border-bottom: 3px solid var(--accent-color);
-    color: var(--text-primary);
-    
-    transition: 
-      color 0.3s ease,
-      border-color 0.3s ease;
+    border-bottom: 3px solid var(--text-2);
+    color: var(--text-2);
+    transition: all 0.3s ease;
+  }
+  
+  &__item-info {
+    margin-bottom: 10px;
+    transition: color 0.3s ease;
   }
   
   &__item-text {
     display: flex;
+    align-items: center;
     margin-bottom: 20px;
     font-size: 18px;
-    align-items: center;
-    color: var(--text-primary);
     transition: color 0.3s ease;
     
     svg {
       margin-left: 5px;
       
       path {
-        fill: var(--accent-color);
+        fill: var(--text-2);
         transition: fill 0.3s ease;
       }
     }
   }
-  
-  &__item-info {
-    color: var(--text-primary);
-    transition: color 0.3s ease;
-  }
 }
+
+
+
 
 .resume {
   text-align: center;
@@ -467,14 +478,14 @@
   &__text {
     font-size: 30px;
     margin-bottom: 20px;
-    color: var(--text-primary);
+    color: var(--text-1);
     transition: color 0.3s ease;
   }
   
   &__title {
     font-size: 120px;
     transition: all 0.3s ease;
-    color: var(--text-primary);
+    color: var(--text-1);
     text-decoration: none;
     
     &:hover {
@@ -510,7 +521,7 @@
     font-size: 42px;
     display: inline-block;
     position: relative;
-    color: var(--text-primary);
+    color: var(--text-1);
     text-decoration: none;
     transition: color 0.3s ease;
     
@@ -522,7 +533,7 @@
       bottom: 0;
       height: 1px;
       width: 100%;
-      background-color: var(--accent-color);
+      background-color: var(--text-1);
       transition: all 1s ease-out;
     }
     
@@ -560,7 +571,7 @@
     margin-bottom: 15px;
     
     span {
-      color: var(--text-primary);
+      color: var(--text-1);
       transition: color 0.3s ease;
     }
   }
@@ -570,7 +581,7 @@
     @extend %light;
     opacity: 0.8;
     transition: opacity .3s ease-out, color 0.3s ease;
-    color: var(--text-primary);
+    color: var(--text-1);
     text-decoration: none;
     
     &:hover {
@@ -582,7 +593,7 @@
     @extend %light;
     text-align: center;
     font-size: 15px;
-    color: var(--text-primary);
+    color: var(--text-1);
     transition: color 0.3s ease;
   }
 }

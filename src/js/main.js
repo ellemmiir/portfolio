@@ -193,156 +193,211 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const themeManager = new ThemeManager();
 
+class I18n {
+  constructor() {
+    this.translations = translations;
+    this.currentLang = "en";
+    this.init();
+  }
 
-  class I18n {
-    constructor() {
-      this.translations = translations;
+  init() {
+    this.detectLanguage();
+    this.applyLanguage(this.currentLang);
+    this.initListeners();
+  }
+
+  detectLanguage() {
+    const savedLang = localStorage.getItem("preferredLanguage");
+    const browserLang = navigator.language.split("-")[0];
+
+    if (savedLang && (savedLang === "ru" || savedLang === "en")) {
+      this.currentLang = savedLang;
+    } else if (browserLang === "ru") {
+      this.currentLang = "ru";
+    } else {
       this.currentLang = "en";
-      this.init();
-    }
-
-    init() {
-      this.detectLanguage();
-      this.applyLanguage(this.currentLang);
-      this.initListeners();
-    }
-
-    detectLanguage() {
-      const savedLang = localStorage.getItem("preferredLanguage");
-      const browserLang = navigator.language.split("-")[0];
-
-      if (savedLang && (savedLang === "ru" || savedLang === "en")) {
-        this.currentLang = savedLang;
-      } else if (browserLang === "ru") {
-        this.currentLang = "ru";
-      } else {
-        this.currentLang = "en";
-      }
-    }
-
-    applyLanguage(lang) {
-      if (!this.translations || !this.translations[lang]) return;
-
-      this.currentLang = lang;
-      localStorage.setItem("preferredLanguage", lang);
-      document.documentElement.lang = lang;
-      document.title = this.translations[lang].meta.title;
-
-      this.updateAllTranslations();
-      this.updateLanguageButton();
-      this.updateRussianTextClasses();
-    }
-
-    updateAllTranslations() {
-      document.querySelectorAll("[data-i18n]").forEach((element) => {
-        const key = element.dataset.i18n;
-        const value = this.getTranslation(key);
-        if (value !== undefined) element.textContent = value;
-      });
-
-      document.querySelectorAll("[data-i18n-alt]").forEach((element) => {
-        const key = element.dataset.i18nAlt;
-        const value = this.getTranslation(key);
-        if (value !== undefined) element.alt = value;
-      });
-    }
-
-    getTranslation(key) {
-      if (!this.translations || !this.translations[this.currentLang])
-        return undefined;
-
-      const keys = key.split(".");
-      let value = this.translations[this.currentLang];
-
-      for (const k of keys) {
-        if (value && value[k] !== undefined) {
-          value = value[k];
-        } else {
-          return undefined;
-        }
-      }
-      return value;
-    }
-
-    updateLanguageButton() {
-      const btn = document.getElementById("lang-toggle");
-      if (btn) {
-        const text = this.getTranslation("about.langBtn");
-        if (text) btn.textContent = text;
-      }
-    }
-
-    updateRussianTextClasses() {
-      if (this.currentLang === "ru") {
-        document.body.classList.add("lang-ru");
-      } else {
-        document.body.classList.remove("lang-ru");
-      }
-
-      const selectors = [
-        ".about__info-text",
-        ".skills__text",
-        ".footer__text",
-        ".menu__list-a",
-        ".header__bottom-title",
-        ".about__title",
-        ".skills__title",
-        ".works__title",
-        ".works__item-subtitle",
-        ".works__item-text",
-        ".resume__text",
-        ".resume__title",
-        ".footer__list-a",
-        ".footer__list-li span",
-        ".skills__item",
-      ];
-
-      const textElements = document.querySelectorAll(selectors.join(", "));
-      textElements.forEach((element) => {
-        if (this.currentLang === "ru") {
-          element.classList.add("ru-text");
-        } else {
-          element.classList.remove("ru-text");
-        }
-      });
-    }
-
-    toggleLanguage() {
-      const newLang = this.currentLang === "en" ? "ru" : "en";
-      this.applyLanguage(newLang);
-      this.animateTransition();
-    }
-
-    animateTransition() {
-      const content = document.querySelector("main") || document.body;
-      content.style.opacity = "0.7";
-      content.style.transition = "opacity 0.3s ease";
-
-      setTimeout(() => {
-        content.style.opacity = "1";
-      }, 300);
-    }
-
-    initListeners() {
-      const langBtn = document.getElementById("lang-toggle");
-      if (langBtn) {
-        langBtn.addEventListener("click", () => this.toggleLanguage());
-      }
-
-      const menuBtn = document.querySelector(".menu__btn");
-      if (menuBtn) {
-        menuBtn.addEventListener("click", () => {
-          setTimeout(() => {
-            this.updateAllTranslations();
-            this.updateRussianTextClasses();
-          }, 100);
-        });
-      }
     }
   }
 
+  applyLanguage(lang) {
+    if (!this.translations || !this.translations[lang]) return;
 
-  const i18n = new I18n();
+    this.currentLang = lang;
+    localStorage.setItem("preferredLanguage", lang);
+    document.documentElement.lang = lang;
+    document.title = this.translations[lang].meta.title;
+
+    this.updateAllTranslations();
+    this.updateLanguageButton();
+    this.updateRussianTextClasses();
+  }
+
+updateAllTranslations() {
+  document.querySelectorAll("[data-i18n]").forEach((element) => {
+    const key = element.dataset.i18n;
+    const value = this.getTranslation(key);
+    if (value === undefined) return;
+
+    const children = Array.from(element.children);
+    const svg = element.querySelector('svg');
+    
+    if (children.length > 0) {
+      const childHTML = children.map(child => child.outerHTML).join('');
+      
+      element.innerHTML = '';
+      
+      element.appendChild(document.createTextNode(value));
+      
+      if (svg && element.lastChild.nodeType === Node.TEXT_NODE) {
+        element.lastChild.textContent += ' ';
+      }
+      
+      element.insertAdjacentHTML('beforeend', childHTML);
+    } 
+    else if (svg) {
+      const svgHtml = svg.outerHTML;
+      element.innerHTML = '';
+      const textNode = document.createTextNode(value + ' ');
+      element.appendChild(textNode);
+      element.insertAdjacentHTML('beforeend', svgHtml);
+    } 
+    else {
+      element.textContent = value;
+    }
+  });
+
+  document.querySelectorAll("[data-i18n-alt]").forEach((element) => {
+    const key = element.dataset.i18nAlt;
+    const value = this.getTranslation(key);
+    if (value !== undefined) element.alt = value;
+  });
+
+  document.querySelectorAll("[data-i18n-placeholder]").forEach((element) => {
+    const key = element.dataset.i18nPlaceholder;
+    const value = this.getTranslation(key);
+    if (value !== undefined) element.placeholder = value;
+  });
+}
+
+  updateWorksCards() {
+    document.querySelectorAll(".works__item").forEach((card, index) => {
+      const subtitle = card.querySelector(".works__item-subtitle");
+      if (subtitle && subtitle.dataset.i18n) {
+        const value = this.getTranslation(subtitle.dataset.i18n);
+        if (value) subtitle.textContent = value;
+      }
+      
+      const textElement = card.querySelector(".works__item-text");
+      if (textElement && textElement.dataset.i18n) {
+        const value = this.getTranslation(textElement.dataset.i18n);
+        if (value) {
+          const svg = textElement.querySelector('svg');
+          if (svg) {
+            const svgHtml = svg.outerHTML;
+            textElement.innerHTML = value + ' ' + svgHtml;
+          } else {
+            textElement.textContent = value;
+          }
+        }
+      }
+    });
+  }
+
+  getTranslation(key) {
+    if (!this.translations || !this.translations[this.currentLang])
+      return undefined;
+
+    const keys = key.split(".");
+    let value = this.translations[this.currentLang];
+
+    for (const k of keys) {
+      if (value && value[k] !== undefined) {
+        value = value[k];
+      } else {
+        return undefined;
+      }
+    }
+    return value;
+  }
+
+  updateLanguageButton() {
+    const btn = document.getElementById("lang-toggle");
+    if (btn) {
+      const text = this.getTranslation("about.langBtn");
+      if (text) btn.textContent = text;
+    }
+  }
+
+  updateRussianTextClasses() {
+    if (this.currentLang === "ru") {
+      document.body.classList.add("lang-ru");
+    } else {
+      document.body.classList.remove("lang-ru");
+    }
+
+    const selectors = [
+      ".about__info-text",
+      ".skills__text",
+      ".footer__text",
+      ".menu__list-a",
+      ".header__bottom-title",
+      ".about__title",
+      ".skills__title",
+      ".works__title",
+      ".works__item-subtitle",
+      ".works__item-text",
+      ".resume__text",
+      ".resume__title",
+      ".footer__list-a",
+      ".footer__list-li span",
+      ".skills__item",
+    ];
+
+    const textElements = document.querySelectorAll(selectors.join(", "));
+    textElements.forEach((element) => {
+      if (this.currentLang === "ru") {
+        element.classList.add("ru-text");
+      } else {
+        element.classList.remove("ru-text");
+      }
+    });
+  }
+
+  toggleLanguage() {
+    const newLang = this.currentLang === "en" ? "ru" : "en";
+    this.applyLanguage(newLang);
+    this.animateTransition();
+  }
+
+  animateTransition() {
+    const content = document.querySelector("main") || document.body;
+    content.style.opacity = "0.7";
+    content.style.transition = "opacity 0.3s ease";
+
+    setTimeout(() => {
+      content.style.opacity = "1";
+    }, 300);
+  }
+
+  initListeners() {
+    const langBtn = document.getElementById("lang-toggle");
+    if (langBtn) {
+      langBtn.addEventListener("click", () => this.toggleLanguage());
+    }
+
+    const menuBtn = document.querySelector(".menu__btn");
+    if (menuBtn) {
+      menuBtn.addEventListener("click", () => {
+        setTimeout(() => {
+          this.updateAllTranslations();
+          this.updateRussianTextClasses();
+        }, 100);
+      });
+    }
+  }
+}
+
+const i18n = new I18n();
 
 
   const menuBtn = document.querySelector(".menu__btn");
