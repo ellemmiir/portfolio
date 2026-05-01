@@ -10730,7 +10730,7 @@ document.addEventListener("DOMContentLoaded", () => {
           works: "РАБОТЫ",
           contact: "КОНТАКТЫ",
         },
-        welcome: "ДОБРО ПОЖАЛОВАТЬ В ПОРТФОЛИО",
+        welcome: "WELCOME TO PORTFOLIO",
       },
       about: {
         title: "Обо мне",

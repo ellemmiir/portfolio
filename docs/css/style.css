@@ -4,7 +4,7 @@
 }
 
 .header__top {
-    padding: 20px 0;
+    padding: 22px 0;
     position: fixed;
     top: 0;
     left: 0;
@@ -155,7 +155,7 @@
     padding: 5px;
     font-size: 24px;
     text-transform: uppercase;
-    transition: all 0.3s ease;
+    transition: color 0.3s ease;
     color: var(--text-1);
     text-decoration: none;
 }
@@ -462,7 +462,7 @@
 
 .resume__title {
     font-size: 120px;
-    transition: all 0.3s ease;
+    transition: color 0.3s ease;
     color: var(--text-1);
     text-decoration: none;
 }
@@ -611,7 +611,15 @@ body {
     color: var(--text-1);
 }
 
-h1, h2, h3, h4, h5, h6, p, span, li {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+li {
     color: var(--text-1);
     transition: color 0.3s ease;
 }
@@ -724,6 +732,7 @@ svg path {
     margin-left: 15px;
     padding: 5px 10px;
     min-width: 60px;
+    font-size: 16px;
     text-align: center;
     background-color: transparent;
     color: var(--text-primary);
@@ -734,6 +743,28 @@ svg path {
 
 .lang-toggle:hover {
     border-color: var(--accent-color);
+}
+
+.lang-ru .menu__list-a {
+    letter-spacing: 1px;
+}
+
+.lang-ru .title {
+    font-size: clamp(58px, 8vw, 100px);
+    line-height: 1.2;
+}
+
+.lang-ru .works__item-subtitle {
+    font-size: clamp(18px, 3vw, 22px);
+    word-break: break-word;
+}
+
+.lang-ru .footer__text {
+    font-size: clamp(12px, 2vw, 14px);
+}
+
+.lang-ru .lang-toggle {
+    font-size: 16px;
 }
 
 @media (max-width: 1600px) {
